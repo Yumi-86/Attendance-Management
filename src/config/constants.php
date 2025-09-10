@@ -1,0 +1,22 @@
+<?php
+return [
+    'attendance' => [
+        'status' => [
+            'off_duty' => '勤務外',
+            'working' => '出勤中',
+            'breaking' => '休憩中',
+            'finished_work' => '退勤済',
+        ],
+    ],
+
+    'application' => [
+        'status' => [
+            'pending' => '承認待ち',
+            'approved' => '承認済み',
+        ],
+        'type' => [
+            'attendance' => '出退勤修正',
+            'break'      => '休憩修正',
+        ],
+    ],
+];

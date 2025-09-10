@@ -17,7 +17,7 @@ class CreateApplicationsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('attendance_id')->constrained()->cascadeOnDelete();
-            $table->string('applied_remarks')->nullable();
+            $table->string('applied_remarks');
             $table->string('status');
             $table->string('type');
             $table->timestamps();
