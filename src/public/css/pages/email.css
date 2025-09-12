@@ -1,0 +1,45 @@
+@import '../base/variables.css';
+@import '../components/buttons.css';
+
+.verify__content {
+    max-width: 1230px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.verify__text {
+    line-height: var(--lh-base);
+    margin: 0 auto;
+}
+
+.verify__button {
+    margin: var(--spacing-card) auto;
+}
+
+.verify__button-submit {
+    display: inline-block;
+    padding: var(--spacing-btn) var(--spacing-btn);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-btn);
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    color: var(--color-black);
+    border: 1px solid var(--color-black);
+    background-color: var(--color-light);
+}
+
+.verify__resend {
+    margin: 0 auto;
+}
+
+.verify__resend-submit {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: var(--color-link);
+    text-decoration: none;
+    cursor: pointer;
+}

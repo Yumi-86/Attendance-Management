@@ -1,0 +1,77 @@
+:root {
+    --color-white: #ffffff;
+    --color-black: #000000;
+
+    --color-primary: ##737373;
+
+    --color-danger: #dc3545;
+    --color-danger-bg: #FFE4E1;
+
+    --font-xxs: 1rem;
+    /*16px*/
+    --font-xs: 1.125rem;
+    /*18px*/
+    --font-sm: 1.25rem;
+    /*20px*/
+    --font-md: 1.5rem;
+    /*24px*/
+    --font-lg: 1.625rem;
+    /* 26px */
+    --font-xl: 1.875rem;
+    /* 30px */
+    --font-2xl: 2.25rem;
+    /*36px*/
+    --font-3xl: 2.5rem;
+    /* 40px */
+    --font-4xl: 2.8125rem;
+    /*45px*/
+    --font-5xl: 5rem;
+    /* 80px */
+
+    --font-list-content: var(--font-xxs);
+    --font-nav: var(--font-md);
+    --font-ttl: var(--font-2xl);
+    --font-sb-ttl: var(--font-xl);
+    --font-input-label: var(--font-md);
+    --font-form-btn: var(--font-lg);
+
+    --font-date: var(--font-3xl);
+    --font-time: var(--font-5xl);
+    --font-main-btn: 2rem;
+    --font-greeting: var(--font-lg);
+
+    --spacing-xxs: 0.25rem;
+    /* 4px */
+    --spacing-xs: 0.5rem;
+    /* 8px */
+    --spacing-sm: 0.75rem;
+    /* 12px */
+    --spacing-md: 1rem;
+    /* 16px */
+    --spacing-lg: 1.5rem;
+    /* 24px */
+    --spacing-xl: 2rem;
+    /* 32px */
+    --spacing-2xl: 3.5rem;
+    /* 48px */
+    --spacing-3xl: 4rem;
+
+    --spacing-section: var(--spacing-2xl);
+    /* セクション間 */
+    --spacing-input: var(--spacing-sm);
+    /* インプットの内側余白 */
+    --spacing-form-group: var(--spacing-xl);
+    /* 入力項目ごとの間隔 */
+    --spacing-btn: var(--spacing-xs);
+    /* ボタンの内側余白 */
+
+    --radius-sm: 5px;
+    --radius-md: 10px;
+    --radius-lg: 20px;
+    --radius-label: 50px;
+    --radius-pill: 9999px;
+
+    --lh-tight: 1.2;
+    --lh-base: 1.5;
+    --lh-loose: 1.75;
+}
