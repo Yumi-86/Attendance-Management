@@ -2,7 +2,7 @@
     --color-white: #ffffff;
     --color-black: #000000;
 
-    --color-primary: ##737373;
+    --color-primary: #737373;
 
     --color-danger: #dc3545;
     --color-danger-bg: #FFE4E1;
@@ -30,7 +30,7 @@
 
     --font-list-content: var(--font-xxs);
     --font-nav: var(--font-md);
-    --font-ttl: var(--font-2xl);
+    --font-heading: var(--font-2xl);
     --font-sb-ttl: var(--font-xl);
     --font-input-label: var(--font-md);
     --font-form-btn: var(--font-lg);
@@ -62,7 +62,7 @@
     /* インプットの内側余白 */
     --spacing-form-group: var(--spacing-xl);
     /* 入力項目ごとの間隔 */
-    --spacing-btn: var(--spacing-xs);
+    --spacing-btn: var(--spacing-sm);
     /* ボタンの内側余白 */
 
     --radius-sm: 5px;
@@ -70,6 +70,8 @@
     --radius-lg: 20px;
     --radius-label: 50px;
     --radius-pill: 9999px;
+
+    --radius-btn: var(--radius-sm);
 
     --lh-tight: 1.2;
     --lh-base: 1.5;

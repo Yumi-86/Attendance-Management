@@ -5,9 +5,14 @@
 @endsection
 
 @section('content')
+@if (session('status') == 'verification-link-sent')
+<div class="status">
+    確認メールを再送しました。
+</div>
+@endif
 <div class="verify__content">
     <div class="verify__text">
-        <p>登録していただいたメールアドレスに認証メールを送付しました。</p>
+        <p> 。</p>
         <p>メール認証を完了してください。</p>
     </div>
     <div class="verify__button">

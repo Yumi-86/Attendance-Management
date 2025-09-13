@@ -1,0 +1,39 @@
+@import 'base/variables.css';
+
+body {
+    margin: 0;
+    font-family: 'inter', sans-serif;
+    line-height: var(--lh-base);
+}
+
+.header {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-inner {
+    max-width: 1230px;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-logo {
+    width: 25%;
+}
+.header-logo__link {
+    width: 100%;
+}
+.header-logo__img {
+    height: 50px;
+    width: 100%;
+}
+
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .header-inner {
+        max-width: 850px;
+    }
+}

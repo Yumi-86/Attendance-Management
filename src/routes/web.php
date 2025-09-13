@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\Admin\AttendanceController as AdminAttendanceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +14,10 @@ use App\Http\Controllers\AttendanceController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware('verified')->group(function() {
+    Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
 });
 
-Route::middleware('verified')->group(function() {
-    Route::get('/attendance', [AttendanceController::class, 'index']);
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/login', [AdminAttendanceController::class, 'index'])->name('admin.attendance.index');
 });

@@ -14,7 +14,22 @@
 </head>
 
 <body>
-    <header class="hader"></header>
+    <header class="header">
+        <div class="header-inner">
+            <div class="header-logo">
+                <a href="{{ route('home') }}" class="header-logo__link">
+                    <img src="{{ asset('images/coachtech-logo.svg') }}" alt="coachtechロゴ" class="header-logo__img">
+                </a>
+            </div>
+            @if(!Request::is('login') && !Request::is('register') $$ !Request::is('email/verify'))
+            @include('components.navbar')
+            @endif
+        </div>
+    </header>
+
+    <main>
+        @yield('content')
+    </main>
 </body>
 
 </html>

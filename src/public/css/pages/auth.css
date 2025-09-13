@@ -1,0 +1,115 @@
+@import '../base/variables.css';
+
+.login-message {
+    max-width: 100%;
+    text-align: center;
+    padding: var(--spacing-xs) 0;
+    margin-bottom: var(--spacing-section);
+    font-size: var(--font-md);
+    color: var(--color-white);
+    background-color: var(--color-primary);
+}
+
+.auth__content {
+    max-width: 50%;
+    margin: 0 auto;
+    padding: var(--spacing-xl) 0;
+}
+
+.auth__heading {
+    text-align: center;
+    margin-bottom: var(--spacing-form-group);
+}
+
+.auth__heading h2 {
+    font-size: var(--font-heading);
+    color: var(--color-black);
+}
+
+.auth__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form__group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-form-group);
+}
+
+.form__header {
+    font-size: var(--font-input-label);
+    color: var(--color-black);
+}
+
+.form__input {
+    width: 100%;
+    padding: var(--spacing-input);
+    border: 1px solid var(--color-dark);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-md);
+}
+
+.form__input:focus {
+    outline: none;
+}
+
+.form__error {
+    color: var(--color-danger);
+    font-size: var(--font-sm);
+}
+
+.form__btn {
+    display: inline-block;
+    padding: var(--spacing-btn) 0;
+    border-radius: var(--radius-btn);
+    font-size: var(--font-form-btn);
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    margin-top: var(--spacing-form-group);
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+
+.auth__link {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+}
+
+.auth__link a {
+    font-size: var(--font-sm);
+}
+
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .auth__content {
+        max-width: 720px;
+        padding: var(--spacing-section) 0;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .auth__content {
+        max-width: 90%;
+        padding: var(--spacing-xl) 0;
+    }
+
+    .auth__heading h2 {
+        font-size: var(--font-md);
+    }
+
+    .form__input {
+        font-size: var(--font-xxs);
+        padding: 0.9rem;
+    }
+
+    .form__btn {
+        font-size: var(--font-xxs);
+        padding: var(--spacing-xs);
+    }
+
+    .form__error {
+        font-size: var(--font-xxs);
+    }
+}
