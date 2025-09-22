@@ -1,5 +1,4 @@
 @import '../base/variables.css';
-@import '../components/buttons.css';
 
 .status {
     max-width: 100%;
@@ -12,16 +11,18 @@
 }
 .verify__content {
     max-width: 1230px;
-    margin: 0 auto;
+    margin: 200px auto;
     text-align: center;
 }
 .verify__text {
+    font-weight: bold;
+    font-size: var(--font-md);
     line-height: var(--lh-base);
-    margin: 0 auto;
+    width: 100%;
 }
 
 .verify__button {
-    margin: var(--spacing-card) auto;
+    margin: var(--spacing-2xl) auto;
 }
 
 .verify__button-submit {
@@ -34,7 +35,7 @@
     text-align: center;
     color: var(--color-black);
     border: 1px solid var(--color-black);
-    background-color: var(--color-light);
+    background-color: #d9d9d9;
 }
 
 .verify__resend {

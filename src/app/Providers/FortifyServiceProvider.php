@@ -8,10 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
-use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController as FortifySessionController;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Laravel\Fortify\Contracts\LoginResponse;
 use App\Actions\Fortify\LoginResponse as CustomLoginResponse;
+use Laravel\Fortify\Contracts\VerifyEmailViewResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -28,8 +27,6 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->app->bind(FortifySessionController::class, AuthenticatedSessionController::class);
-
         Fortify::createUsersUsing(CreateNewUser::class);
 
         Fortify::registerView(function () {
@@ -37,9 +34,6 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         Fortify::loginView(function () {
-            if(request()->is('admin/*')) {
-                return view('admin.auth.login');
-            }
             return view('auth.login');
         });
 
@@ -47,6 +41,15 @@ class FortifyServiceProvider extends ServiceProvider
             $email = (string) $request->email;
 
             return Limit::perMinute(10)->by($email . $request->ip());
+        });
+
+        $this->app->singleton(VerifyEmailViewResponse::class, function () {
+            return new class implements VerifyEmailViewResponse {
+                public function toResponse($request)
+                {
+                    return response()->view('auth.verify-email');
+                }
+            };
         });
     }
 }

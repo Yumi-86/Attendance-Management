@@ -1,0 +1,78 @@
+@import '../base/variables.css';
+
+.attendance__content {
+    background-color: var(--color-bg);
+}
+.session__status {
+    text-align: center;
+    padding: var(--spacing-xs);
+}
+.session__status--error {
+    font-size: var(--font-xxs);
+    background-color: var(--color-danger-bg);
+    color: var(--color-danger);
+}
+.session__status--success {
+    font-size: var(--font-xxs);
+    background-color: var(--color-success-bg);
+    color: var(--color-success);
+}
+
+.attendance__main {
+    max-width: 1230px;
+    margin: 0 auto;
+    padding: 10rem 0;
+}
+
+.attendance__status {
+    margin: var(--spacing-xl) auto;
+    width: 100%;
+    text-align: center;
+}
+
+.attendance__status-label {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: var(--font-xs);
+    font-weight: bold;
+    border-radius: var(--radius-label);
+    background-color: var(--color-label-bg);
+    color: var(--color-label-txt);
+}
+.attendance__date-time {
+    text-align: center;
+}
+.attendance__date{
+    font-size: var(--font-date);
+    margin-bottom: var(--spacing-xl);
+}
+.attendance__time {
+    font-size: var(--font-time);
+    font-weight: bold;
+    margin-bottom: var(--spacing-section);
+}
+.attendance__btn {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+.attendance__btn--working {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-section);
+}
+.attendance__btn-submit {
+    width: 180px;
+    padding: var(--spacing-btn) 0;
+    border-radius: var(--radius-lg);
+    font-weight: bold;
+    font-size: var(--font-main-btn);
+}
+.attendance__btn-submit--clock {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+.attendance__btn-submit--break {
+    background-color: var(--color-white);
+    color: var(--color-black);
+    border: none;
+}

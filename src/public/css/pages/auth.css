@@ -29,13 +29,12 @@
 .auth__form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: var(--spacing-xl);
 }
 
 .form__group {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-form-group);
 }
 
 .form__header {
@@ -46,7 +45,7 @@
 .form__input {
     width: 100%;
     padding: var(--spacing-input);
-    border: 1px solid var(--color-dark);
+    border: 1px solid var(--color-black);
     border-radius: var(--radius-sm);
     font-size: var(--font-md);
 }
@@ -56,21 +55,27 @@
 }
 
 .form__error {
+    width: 100%;
+    text-align: center;
+    background-color: var(--color-danger-bg);
     color: var(--color-danger);
     font-size: var(--font-sm);
 }
 
 .form__btn {
+    text-align: center;
+    margin-top: var(--spacing-3xl);
+}
+.btn {
     display: inline-block;
     padding: var(--spacing-btn) 0;
     border-radius: var(--radius-btn);
     font-size: var(--font-form-btn);
     font-weight: bold;
     cursor: pointer;
-    text-align: center;
-    margin-top: var(--spacing-form-group);
     background-color: var(--color-black);
     color: var(--color-white);
+    width: 100%;
 }
 
 .auth__link {
@@ -80,6 +85,8 @@
 
 .auth__link a {
     font-size: var(--font-sm);
+    text-decoration: none;
+    color: var(--color-link);
 }
 
 @media screen and (min-width: 1400px) and (max-width: 1540px) {

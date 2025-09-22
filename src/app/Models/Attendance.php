@@ -27,4 +27,10 @@ class Attendance extends Model
     {
         return $this->hasMany(Application::class);
     }
+
+    public function scopeToday($query, $userId)
+    {
+        return $query->where('user_id', $userId)
+                    ->whereDate('work_date', today());
+    }
 }

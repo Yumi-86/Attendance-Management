@@ -15,9 +15,11 @@ body {
 }
 
 .header-inner {
+    display: flex;
     max-width: 1230px;
     margin: 0 auto;
     align-items: center;
+    padding: var(--spacing-xs);
     justify-content: space-between;
 }
 

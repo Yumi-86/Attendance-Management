@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AttendanceController;
-use App\Http\Controllers\RequestController;
+use App\Http\Controllers\general\AttendanceController;
+use App\Http\Controllers\general\RequestController;
 use App\Http\Controllers\Admin\AttendanceController as AdminAttendanceController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\RequestController as AdminRequestController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Models\Attendance;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +20,21 @@ use App\Http\Controllers\Admin\RequestController as AdminRequestController;
 |
 */
 
+    Route::post('/login', [AuthenticatedSessionController::class, 'store'])->middleware('web')->name('login');
+
+    Route::get('/admin/login', function () {
+        return view('admin.auth.login');
+    })->middleware('web')->name('admin.login');
+    Route::post('/admin/login', [AuthenticatedSessionController::class, 'store'])->name('admin.login.store');
+
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/attendance', [AttendanceController::class, 'create'])->name('attendance.create');
+
+    Route::post('/attendance/clockIn', [AttendanceController::class, 'clockIn'])->name('attendance.clockIn');
+    Route::post('/attendance/startBreak', [AttendanceController::class, 'startBreak'])->name('attendance.startBreak');
+    Route::post('/attendance/endBreak', [AttendanceController::class, 'endBreak'])->name('attendance.endBreak');
+    Route::post('/attendance/clockOut', [AttendanceController::class, 'clockOut'])->name('attendance.clockOut');
 
     Route::get('/attendance/list', [AttendanceController::class, 'index'])->name('attendance.index');
 
@@ -29,11 +44,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
-
-    // Route::get('/login', function () {
-    //     return view('admin.auth.login');
-    // })->name('login');
-
+    
     Route::middleware(['auth', 'admin'])->group(function () {
 
         Route::get('/attendances', [AdminAttendanceController::class, 'index'])->name('attendances.index');

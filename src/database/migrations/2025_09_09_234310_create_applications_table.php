@@ -17,9 +17,10 @@ class CreateApplicationsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('attendance_id')->constrained()->cascadeOnDelete();
+            $table->time('applied_clock_in');
+            $table->time('applied_clock_out');
             $table->string('applied_remarks');
             $table->string('status');
-            $table->string('type');
             $table->timestamps();
         });
     }

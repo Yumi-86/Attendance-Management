@@ -10,7 +10,7 @@ class Application extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'attendance_id', 'applied_remarks', 'type', 'status',
+        'user_id', 'attendance_id', 'applied_clock_in', 'applied_clock_out','applied_remarks', 'status',
     ];
 
     public function user() {
@@ -19,10 +19,6 @@ class Application extends Model
 
     public function attendance() {
         return $this->belongsTo(Attendance::class);
-    }
-
-    public function application_attendance() {
-        return $this->hasOne(ApplicationAttendance::class);
     }
 
     public function application_breaks() {

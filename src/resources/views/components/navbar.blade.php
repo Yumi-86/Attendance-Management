@@ -1,4 +1,4 @@
-<nav class="navar">
+<nav class="navbar">
     <div class="navbar-menu">
         <ul>
             @if(Auth::check() && Auth::user()->role === 'general')
@@ -14,12 +14,12 @@
             @endif
 
             <li>
-                <form method="POST" action="{{ route('logout') }}" class="navbar__link">
+                <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit">ログアウト</button>
+                    <button type="submit" class="navbar__link navbar__logout">ログアウト</button>
+                    <input type="hidden" name="role" value="{{ Auth::user()->role }}">
                 </form>
             </li>
-
         </ul>
     </div>
 </nav>

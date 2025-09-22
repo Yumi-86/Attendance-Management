@@ -54,7 +54,7 @@ class LoginRequest extends FormRequest
             ]);
         }
 
-        if ($this->routeIs('login') && $user && $user->role !== 'user') {
+        if ($this->routeIs('login') && $user && $user->role !== 'general') {
             throw ValidationException::withMessages([
                 'email' => '一般ユーザーとして認証できません。',
             ]);

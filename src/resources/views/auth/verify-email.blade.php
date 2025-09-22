@@ -12,7 +12,7 @@
 @endif
 <div class="verify__content">
     <div class="verify__text">
-        <p> 。</p>
+        <p>登録していただいたメールアドレスに認証メールを送信しました。</p>
         <p>メール認証を完了してください。</p>
     </div>
     <div class="verify__button">

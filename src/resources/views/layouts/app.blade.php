@@ -17,11 +17,21 @@
     <header class="header">
         <div class="header-inner">
             <div class="header-logo">
-                <a href="{{ route('home') }}" class="header-logo__link">
+                <a href="
+                        @auth
+                            @if (auth()->user()->role === 'admin')
+                                {{ route('admin.attendances.index') }}
+                            @else
+                                {{ route('attendance.create') }}
+                            @endif
+                        @else
+                            {{ route('login') }}
+                        @endauth
+                " class="header-logo__link">
                     <img src="{{ asset('images/coachtech-logo.svg') }}" alt="coachtechロゴ" class="header-logo__img">
                 </a>
             </div>
-            @if(!Request::is('login') && !Request::is('register') $$ !Request::is('email/verify'))
+            @if(!Request::is('login') && !Request::is('register') && !Request::is('email/verify') && !Request::is('admin/login'))
             @include('components.navbar')
             @endif
         </div>

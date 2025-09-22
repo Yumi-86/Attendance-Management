@@ -20,8 +20,10 @@ class AuthenticatedSessionController extends Controller
             return app(LoginResponseContract::class);
         }
 
-        return back()->withErrors([
-            'email' => 'ログイン情報が登録されていません。',
-        ]);
+        return back()
+            ->withErrors([
+                'email' => 'ログイン情報が登録されていません。',
+            ])
+            ->withInput();
     }
 }

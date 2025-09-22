@@ -18,9 +18,9 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
-        $request = app(RegisterRequest::class);
-        
-        $validated = $request->validateResolved();
+        $request = new RegisterRequest();
+
+        $validated = validator($input, $request->rules(), $request->messages())->validate();
 
         return User::create([
             'name' => $validated['name'],
