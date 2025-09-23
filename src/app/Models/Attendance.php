@@ -18,7 +18,7 @@ class Attendance extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function breaks()
+    public function breakTimes()
     {
         return $this->hasMany(BreakTime::class);
     }
@@ -28,9 +28,10 @@ class Attendance extends Model
         return $this->hasMany(Application::class);
     }
 
-    public function scopeToday($query, $userId)
+    public static function todayRecord($userId)
     {
-        return $query->where('user_id', $userId)
-                    ->whereDate('work_date', today());
+        return self::where('user_id', $userId)
+            ->whereDate('work_date', today())
+            ->first();
     }
 }

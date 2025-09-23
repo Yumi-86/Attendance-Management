@@ -9,6 +9,7 @@ use App\Models\Attendance;
 use App\Models\BreakTime;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
+use Illuminate\Support\Facades\DB;
 
 class AttendanceController extends Controller
 {
@@ -27,7 +28,7 @@ class AttendanceController extends Controller
     public function clockIn(Request $request) {
         $userId = $request->user()->id;
 
-        $attendance = Attendance::today($userId)->first();
+        $attendance = Attendance::todayRecord($userId);
 
         if($attendance) {
             return back()->with('error', '今日の出勤はすでに記録されています。');
@@ -45,7 +46,7 @@ class AttendanceController extends Controller
 
     public function startBreak(Request $request) {
         $userId = $request->user()->id;
-        $attendance = Attendance::today($userId)->first();
+        $attendance = Attendance::todayRecord($userId);
 
         if(! $attendance) {
             return back()->with('error', '出勤が記録されていません');
@@ -61,14 +62,15 @@ class AttendanceController extends Controller
             return back()->with('error', '前の休憩がまだ終了していません');
         }
 
-        BreakTime::create([
-            'attendance_id' => $attendance->id,
-            'break_start' => now(),
-        ]);
-
-        $attendance->update([
-            'status' => 'on_break',
-        ]);
+        DB::transaction(function () use ($attendance) {
+            BreakTime::create([
+                'attendance_id' => $attendance->id,
+                'break_start' => now(),
+            ]);
+            $attendance->update([
+                'status' => 'on_break',
+            ]);
+        });
 
         return redirect()->route('attendance.create')->with('success', '休憩を開始しました');
     }
@@ -76,7 +78,7 @@ class AttendanceController extends Controller
     public function endBreak(Request $request) {
         $userId = $request->user()->id;
 
-        $attendance = Attendance::today($userId)->first();
+        $attendance = Attendance::todayRecord($userId);
 
         if(! $attendance) {
             return back()->with('error', '出勤が記録されていません');
@@ -86,27 +88,30 @@ class AttendanceController extends Controller
             return back()->with('error', '休憩中ではありません');
         }
 
-        $break = $attendance->breakTimes()
-            ->whereNull('break_end')
-            ->latest()
-            ->first();
+        DB::transaction(function () use ($attendance) {
+            $break = $attendance->breakTimes()
+                ->whereNull('break_end')
+                ->latest('break_start')
+                ->first();
 
-        if($break) {
-            $break->update([
-                'break_end' => now(),
+            if($break){
+                $break->update([
+                    'break_end' => now(),
+                ]);
+            }
+
+            $attendance->update([
+                'status' => 'working',
             ]);
-        }
 
-        $attendance->update([
-            'status' => 'working',
-        ]);
+        });
 
         return redirect()->route('attendance.create')->with('success', '休憩を終了しました');
     }
 
     public function clockOut(Request $request) {
         $userId = $request->user()->id;
-        $attendance = Attendance::today($userId)->first();
+        $attendance = Attendance::todayRecord($userId);
 
         if(! $attendance) {
             return back()->with('error', '出勤が記録されていません');
@@ -118,6 +123,9 @@ class AttendanceController extends Controller
 
         $attendance->update([
             'clock_out' => now(),
+            'status' => 'clocked_out',
         ]);
+
+        return redirect()->route('attendance.create')->with('success', '退勤しました');
     }
 }

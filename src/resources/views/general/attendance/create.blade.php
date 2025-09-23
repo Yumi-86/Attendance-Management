@@ -37,24 +37,24 @@
         </div>
         @elseif($status === 'working')
         <div class="attendance__btn attendance__btn--working">
-            <form action="{{ route('attendance.startBreak') }}" method="POST" class="attendance__btn-form">
-                @csrf
-                <button type="submit" class="attendance__btn-submit attendance__btn-submit--break">休憩入</button>
-            </form>
             <form action="{{ route('attendance.clockOut') }}" method="POST" class="attendance__btn-form">
                 @csrf
                 <button type="submit" class="attendance__btn-submit attendance__btn-submit--clock">退勤</button>
             </form>
+            <form action="{{ route('attendance.startBreak') }}" method="POST" class="attendance__btn-form">
+                @csrf
+                <button type="submit" class="attendance__btn-submit attendance__btn-submit--break">休憩入</button>
+            </form>
         </div>
-        @elseif($status === 'breaking')
+        @elseif($status === 'on_break')
         <div class="attendance__btn">
             <form action="{{ route('attendance.endBreak') }}" method="POST" class="attendance__btn-form">
                 @csrf
                 <button type="submit" class="attendance__btn-submit attendance__btn-submit--break">休憩戻</button>
             </form>
         </div>
-        @elseif($status === 'finished_work')
-        <p>お疲れ様でした。</p>
+        @elseif($status === 'clocked_out')
+        <p class="attendance__msg">お疲れ様でした。</p>
         @endif
     </div>
 </div>

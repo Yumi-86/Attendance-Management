@@ -5,7 +5,7 @@ return [
             'off_duty' => '勤務外',
             'working' => '出勤中',
             'on_break' => '休憩中',
-            'finished_work' => '退勤済',
+            'clocked_out' => '退勤済',
         ],
     ],
 

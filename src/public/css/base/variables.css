@@ -3,7 +3,7 @@
     --color-black: #000000;
 
     --color-bg: #F0EFF2;
-    
+
     --color-link: #0073CC;
 
     --color-label-bg: #C8C8C8;
@@ -75,6 +75,11 @@
     --spacing-btn: var(--spacing-sm);
     /* ボタンの内側余白 */
     --spacing-label: 4.75rem;
+
+    --letter-spacing-sm: 0.2em;
+    --letter-spacing-md: 0.5em;
+    --letter-spacing-lg: 0.7em;
+    --letter-spacing-xl: 1em;
 
     --radius-sm: 5px;
     --radius-md: 10px;
