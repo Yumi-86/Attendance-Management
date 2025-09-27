@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Attendance extends Model
 {
@@ -33,5 +34,13 @@ class Attendance extends Model
         return self::where('user_id', $userId)
             ->whereDate('work_date', today())
             ->first();
+    }
+
+    public function getClockInFormattedAttribute() {
+        return $this->clock_in ? Carbon::parse($this->clock_in)->format('H:i') : null;
+    }
+
+    public function getClockOutFormattedAttribute() {
+        return $this->clock_out ? Carbon::parse($this->clock_out)->format('H:i') : null;
     }
 }

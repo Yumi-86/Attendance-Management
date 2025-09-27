@@ -11,6 +11,8 @@
 
     --color-primary: #737373;
 
+    --color-border-list: #e1e1e1;
+
     --color-danger: var(--color-primary);
     --color-danger-bg: #FFE4E1;
 

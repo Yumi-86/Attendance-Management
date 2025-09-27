@@ -9,10 +9,52 @@ use App\Models\Attendance;
 use App\Models\BreakTime;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
+use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\DB;
 
 class AttendanceController extends Controller
 {
+    public function index(Request $request)
+    {
+        $currentMonth = Carbon::parse($request->get('month', now()->format('Y-m')));
+        $start = $currentMonth->copy()->startOfMonth();
+        $end = $currentMonth->copy()->endOfMonth();
+
+        $period = CarbonPeriod::create($start, $end);
+
+        $attendancesCollection = Attendance::where('user_id', auth()->id())
+            ->whereBetween('work_date', [$start->toDateString(), $end->toDateString()])
+            ->get();
+
+        $attendances = $attendancesCollection->map(function ($attendance) {
+            $start = Carbon::parse($attendance->clock_in);
+            $end = Carbon::parse($attendance->clock_out);
+
+            $workMinutes = $end->diffInMinutes($start);
+
+            $breakMinutes = $attendance->breakTimes->sum(function ($break) {
+                $breakStart = Carbon::parse($break->break_start);
+                $breakEnd = Carbon::parse($break->break_end);
+
+                return $breakEnd->diffInMinutes($breakStart);
+            });
+
+            $actualMinutes = $workMinutes - $breakMinutes;
+
+            $attendance->break_time = sprintf('%d:%02d', floor($breakMinutes / 60), $breakMinutes % 60);
+            $attendance->total_time = sprintf('%d:%02d', floor($actualMinutes / 60), $actualMinutes % 60);
+
+            return $attendance;
+        })->keyBy(function ($item) {
+            return Carbon::parse($item->work_date)->toDateString();
+        });
+
+        $prevMonth = $currentMonth->copy()->subMonth()->format('Y-m');
+        $nextMonth = $currentMonth->copy()->addMonth()->format('Y-m');
+
+        return view('general.attendance.index', compact('period', 'attendances', 'currentMonth', 'prevMonth', 'nextMonth'));
+    }
+
     public function create() {
         $attendance = Attendance::where('user_id', Auth::id())
             ->whereDate('work_date', today())
