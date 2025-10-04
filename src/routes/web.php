@@ -2,10 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\general\AttendanceController;
-use App\Http\Controllers\general\RequestController;
+use App\Http\Controllers\general\AttendanceApplicationController;
 use App\Http\Controllers\Admin\AttendanceController as AdminAttendanceController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
-use App\Http\Controllers\Admin\RequestController as AdminRequestController;
+use App\Http\Controllers\Admin\ApplicationController as AdminApplicationController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Models\Attendance;
 
@@ -38,13 +38,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/attendance/list', [AttendanceController::class, 'index'])->name('attendance.index');
 
-    Route::get('/attendance/detail/{id}', [AttendanceController::class, 'show'])->name('attendance.show');
+    Route::get('/attendance/detail/{attendance}', [AttendanceController::class, 'show'])->name('attendance.show');
 
-    Route::get('/stamp_correction_request/list', [RequestController::class, 'index'])->name('request.index');
+    Route::post('/request/{attendance}', [AttendanceApplicationController::class, 'store'])->name('attendance_request.store');
+
+    Route::get('/stamp_correction_request/list', [AttendanceApplicationController::class, 'index'])->name('Attendance_request.index');
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    
+
     Route::middleware(['auth', 'admin'])->group(function () {
 
         Route::get('/attendances', [AdminAttendanceController::class, 'index'])->name('attendances.index');
@@ -55,8 +57,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('/users/{user}/attendances', [AdminAttendanceController::class, 'userIndex'])->name('users.attendances');
 
-        Route::get('/requests', [AdminRequestController::class, 'index'])->name('requests.index');
+        Route::get('/requests', [AdminApplicationController::class, 'index'])->name('requests.index');
 
-        Route::get('/requests/{id}', [AdminRequestController::class, 'show'])->name('requests.show');
+        Route::get('/requests/{id}', [AdminApplicationController::class, 'show'])->name('requests.show');
     });
 });

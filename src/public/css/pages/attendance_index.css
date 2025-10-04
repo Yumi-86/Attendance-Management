@@ -4,6 +4,15 @@
     background-color: var(--color-bg);
     padding: var(--spacing-xl);
 }
+.attendance-alert {
+    background-color: var(--color-success-bg);
+    color: var(--color-success);
+    text-align: center;
+    font-size: var(--font-xxs);
+    width: 80%;
+    margin: 0 auto;
+    padding: var(--spacing-xxs);
+}
 .attendance-list__inner {
     max-width: 1230px;
     margin: 0 auto;
@@ -22,7 +31,7 @@
     width: 8px;
     height: 40px;
     background-color: var(--color-black);
-    margin-right: 12px;
+    margin-right: var(--spacing-sm);
 }
 
 .list__heading-text {
@@ -121,7 +130,7 @@
     .attendance-table {
         letter-spacing: normal;
     }
-    
+
     .attendance-table th,
     .attendance-table td {
         padding: var(--spacing-xxs);

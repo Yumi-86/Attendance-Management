@@ -13,6 +13,8 @@
 
     --color-border-list: #e1e1e1;
 
+    --color-error: #f00;
+
     --color-danger: var(--color-primary);
     --color-danger-bg: #FFE4E1;
 
@@ -83,7 +85,7 @@
     --letter-spacing-lg: 0.7em;
     --letter-spacing-xl: 1em;
 
-    --radius-sm: 5px;
+    --radius-sm: 4px;
     --radius-md: 10px;
     --radius-lg: 20px;
     --radius-label: 50px;

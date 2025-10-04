@@ -1,0 +1,170 @@
+.attendance-page {
+    background-color: var(--color-bg);
+}
+.attendance-dtl {
+    max-width: 1230px;
+    margin: 0 auto;
+    padding: var(--spacing-section) 0;
+}
+.attendance-dtl__block,
+.attendance-dtl__form,
+.attendance-dtl__heading,
+.attendance-dtl__msg {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.attendance-dtl__heading {
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+.attendance-dtl__heading::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 40px;
+    background-color: var(--color-black);
+    margin-right: var(--spacing-sm);
+}
+.attendance-dtl__heading-txt {
+    font-size: var(--spacing-lg);
+    font-weight: bold;
+    margin-bottom: var(--spacing-md);
+}
+
+.attendance-table {
+    width: 100%;
+    font-weight: bold;
+    border-radius: var(--radius-md);
+    background-color: var(--color-white);
+    letter-spacing: var(--letter-spacing-sm);
+}
+.attendance-table th {
+    font-size: var(--font-xxs);
+    color: var(--color-primary);
+    width: 35%;
+    padding: var(--spacing-lg) var(--spacing-2xl);
+    border-bottom: 2px solid var(--color-border-list);
+    text-align: left;
+}
+.attendance-table td {
+    width: 65%;
+    padding: var(--spacing-lg) 10rem var(--spacing-lg) 3rem;
+    color: var(--color-black);
+    border-bottom: 2px solid var(--color-border-list);
+}
+.attendance-table tr:last-child th,
+.attendance-table tr:last-child td {
+    border-bottom: none;
+}
+.attendance-name {
+    font-weight: bold;
+}
+
+.attendance-name,
+.attendance-date__year,
+.attendance-date__date {
+    padding: 0 var(--spacing-md);
+}
+.attendance-date,
+.attendance-clock,
+.attendance-break {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--font-xxs);
+}
+.attendance-clock__txt,
+.attendance-break__txt,
+.attendance-remarks__txt {
+    font-size: var(--font-xs);
+    padding: var(--spacing-xxs) var(--spacing-md);
+    letter-spacing: var(--letter-spacing-sm);
+}
+.attendance-clock__input,
+.attendance-break__input,
+.attendance-remarks__input {
+    font-size: var(--font-xs);
+    padding: var(--spacing-xxs) var(--spacing-md);
+    border: 1px solid var(--color-border-list);
+    border-radius: var(--radius-sm);
+    letter-spacing: var(--letter-spacing-sm);
+}
+.attendance-clock__input,
+.attendance-break__input {
+    width: 100px;
+}
+.attendance-remarks__input {
+    width: 100%;
+}
+.attendance-remarks {
+    font-size: 14px;
+    line-height: var(--lh-base);
+    letter-spacing: var(--letter-spacing-sm);
+}
+
+input[type="time"] {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--font-xxs);
+    font-weight: bold;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+input[type="time"]::-moz-focus-inner {
+    border: 0;
+}
+
+.attendance-error {
+    color: var(--color-error);
+    font-size: var(--font-xxs);
+    margin-top: 4px;
+}
+.attendance-dtl__msg {
+    text-align: right;
+    padding: var(--spacing-xs);
+}
+.attendance-dtl__msg span {
+    color: var(--color-error);
+    font-size: var(--font-xs);
+    font-weight: bolder;
+}
+.attendance-dtl__btn {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: var(--spacing-lg) 0;
+}
+.attendance-btn--submit {
+    width: 130px;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    font-size: var(--font-md);
+    font-weight: bold;
+    letter-spacing: var(--letter-spacing-sm);
+    border-radius: var(--radius-sm);
+    text-align: center;
+    padding: var(--spacing-xxs) 0;
+}
+
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .attendance-dtl {
+        max-width: 850px;
+    }
+    .attendance-dtl__block,
+    .attendance-dtl__form,
+    .attendance-dtl__heading,
+    .attendance-dtl__msg {
+        width: 80%;
+        margin: 0 auto;
+    }
+    .attendance-table th {
+        padding: var(--spacing-md) var(--spacing-xl);
+    }
+    .attendance-table td {
+        padding: var(--spacing-md) 5rem var(--spacing-md) 2rem;
+    }
+}

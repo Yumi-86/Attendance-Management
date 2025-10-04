@@ -42,7 +42,7 @@ class RegisterRequest extends FormRequest
             'email.email' => 'メールアドレスの形式が正しくありません',
             'email.max' => 'メールアドレスは255文字以下で入力してください',
             'email.unique' => 'このメールアドレスは既に登録されています',
-            
+
             'password.required' => 'パスワードを入力してください',
             'password.string' => 'パスワードは文字列で入力してください',
             'password.min' => 'パスワードは8文字以上で入力してください',

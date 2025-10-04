@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Attendance;
 use App\Models\BreakTime;
+use App\Models\Application;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonPeriod;
@@ -28,22 +29,27 @@ class AttendanceController extends Controller
 
         $attendances = $attendancesCollection->map(function ($attendance) {
             $start = Carbon::parse($attendance->clock_in);
-            $end = Carbon::parse($attendance->clock_out);
 
-            $workMinutes = $end->diffInMinutes($start);
+            if($attendance->clock_out) {
+                $end = Carbon::parse($attendance->clock_out);
 
-            $breakMinutes = $attendance->breakTimes->sum(function ($break) {
-                $breakStart = Carbon::parse($break->break_start);
-                $breakEnd = Carbon::parse($break->break_end);
+                $workMinutes = $end->diffInMinutes($start);
 
-                return $breakEnd->diffInMinutes($breakStart);
-            });
+                $breakMinutes = $attendance->breakTimes->sum(function ($break) {
+                    $breakStart = Carbon::parse($break->break_start);
+                    $breakEnd = Carbon::parse($break->break_end);
 
-            $actualMinutes = $workMinutes - $breakMinutes;
+                    return $breakEnd->diffInMinutes($breakStart);
+                });
 
-            $attendance->break_time = sprintf('%d:%02d', floor($breakMinutes / 60), $breakMinutes % 60);
-            $attendance->total_time = sprintf('%d:%02d', floor($actualMinutes / 60), $actualMinutes % 60);
+                $actualMinutes = $workMinutes - $breakMinutes;
 
+                $attendance->break_time = sprintf('%d:%02d', floor($breakMinutes / 60), $breakMinutes % 60);
+                $attendance->total_time = sprintf('%d:%02d', floor($actualMinutes / 60), $actualMinutes % 60);
+            } else {
+                $attendance->break_time = '0:00';
+                $attendance->total_time = '--:--';
+            }
             return $attendance;
         })->keyBy(function ($item) {
             return Carbon::parse($item->work_date)->toDateString();
@@ -169,5 +175,19 @@ class AttendanceController extends Controller
         ]);
 
         return redirect()->route('attendance.create')->with('success', '退勤しました');
+    }
+
+    public function show(Attendance $attendance) {
+        $this->authorize('view', $attendance);
+
+        $user = Auth::user();
+        $breaks = BreakTime::where('attendance_id', $attendance->id)->get();
+        $application = Application::with('application_breaks')
+            ->where('attendance_id', $attendance->id)
+            ->where('status','pending')
+            ->latest()
+            ->first();
+
+        return view('general.attendance.show', compact('user','attendance','breaks', 'application'));
     }
 }

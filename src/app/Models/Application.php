@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Application extends Model
 {
@@ -23,5 +24,16 @@ class Application extends Model
 
     public function application_breaks() {
         return $this->hasMany(ApplicationBreak::class);
+    }
+
+    public function getAppliedClockInFormattedAttribute() {
+        return $this->applied_clock_in
+            ? Carbon::parse($this->applied_clock_in)->format('H:i')
+            : null;
+    }
+    public function getAppliedClockOutFormattedAttribute() {
+        return $this->applied_clock_out
+            ? Carbon::parse($this->applied_clock_out)->format('H:i')
+            : null;
     }
 }

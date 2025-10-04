@@ -43,4 +43,12 @@ class Attendance extends Model
     public function getClockOutFormattedAttribute() {
         return $this->clock_out ? Carbon::parse($this->clock_out)->format('H:i') : null;
     }
+
+    public function getYearAttribute() {
+        return $this->work_date ? Carbon::parse($this->work_date)->format('Y年') : null;
+    }
+
+    public function getDateAttribute() {
+        return $this->work_date ? Carbon::parse($this->work_date)->format('n月j日') : null;
+    }
 }

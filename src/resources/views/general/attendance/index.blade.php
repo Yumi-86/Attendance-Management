@@ -6,6 +6,11 @@
 
 @section('content')
 <div class="attendance-list">
+
+    @if (session('success'))
+    <div class="attendance-alert">{{ session('success') }}</div>
+    @endif
+
     <div class="attendance-list__inner">
         <div class="list__heading">
             <h2 class="list__heading-txt">勤怠一覧</h2>
@@ -41,7 +46,7 @@
                         <td>{{ $attendance->total_time ?? '' }}</td>
                         <td>
                             @if ($attendance)
-                            <a href="{{ route('attendance.show', $attendance->id) }}">詳細</a>
+                            <a href="{{ route('attendance.show', $attendance) }}">詳細</a>
                             @endif
                         </td>
                     </tr>
