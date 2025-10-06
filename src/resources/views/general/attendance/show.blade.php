@@ -44,9 +44,9 @@
                     <th>休憩{{ $loop->iteration }}</th>
                     <td>
                         <div class="attendance-break">
-                            <span class="attendance-break__txt">{{ $break->break_start_formatted }}</span>
+                            <span class="attendance-break__txt">{{ $break->applied_break_start_formatted }}</span>
                             <span>〜</span>
-                            <span class="attendance-break__txt">{{ $break->break_end_formatted }}</span>
+                            <span class="attendance-break__txt">{{ $break->applied_break_end_formatted }}</span>
                         </div>
                     </td>
                 </tr>

@@ -42,7 +42,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('/request/{attendance}', [AttendanceApplicationController::class, 'store'])->name('attendance_request.store');
 
-    Route::get('/stamp_correction_request/list', [AttendanceApplicationController::class, 'index'])->name('Attendance_request.index');
+    Route::get('/stamp_correction_request/list', [AttendanceApplicationController::class, 'index'])->name('attendance_request.index');
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {

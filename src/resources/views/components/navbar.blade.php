@@ -4,7 +4,7 @@
             @if(Auth::check() && Auth::user()->role === 'general')
             <li><a href="{{ route('attendance.create') }}" class="navbar__link">勤怠</a></li>
             <li><a href="{{ route('attendance.index') }}" class="navbar__link">勤怠一覧</a></li>
-            <li><a href="{{ route('request.index') }}" class="navbar__link">申請</a></li>
+            <li><a href="{{ route('attendance_request.index') }}" class="navbar__link">申請</a></li>
             @endif
 
             @if(Auth::check() && Auth::user()->role === 'admin')

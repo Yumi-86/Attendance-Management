@@ -13,12 +13,27 @@ use Illuminate\Support\Facades\Auth;
 
 class AttendanceApplicationController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
         $user = Auth::user();
 
-        $applications = Application::with('application_breaks')->get();
+        $activeTab = $request->get('tab', 'pending');
 
-        return view('general.application.index', compact('user', 'applications'));
+        $pendingApplications = Application::with('attendance')
+            ->where('user_id', $user->id)
+            ->where('status', 'pending')
+            ->get();
+
+        $approvedApplications = Application::with('attendance')
+            ->where('user_id', $user->id)
+            ->where('status', 'approved')
+            ->get();
+
+        return view('general.application.index', compact(
+            'user',
+            'pendingApplications',
+            'approvedApplications',
+            'activeTab',
+        ));
     }
 
     public function store(Attendance $attendance, AttendanceApplicationRequest $request) {

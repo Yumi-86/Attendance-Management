@@ -1,0 +1,64 @@
+.application-list {
+    background-color: var(--color-bg);
+}
+.application-list__inner {
+    max-width: 1230px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+}
+.application-list__heading {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    text-align: left;
+}
+.application-list__heading::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 40px;
+    background-color: var(--color-black);
+    margin-right: var(--spacing-sm);
+}
+
+.application-list__tabs {
+    border-bottom: 1px solid var(--color-black);
+    padding-bottom: var(--spacing-md);
+    display: flex;
+    gap: 6rem;
+    margin: var(--spacing-section);
+}
+.application-list__tab {
+    display: inline-block;
+    margin-left: var(--spacing-section);
+}
+.application-list__tab--active {
+    font-weight: bold;
+}
+
+.application-list__content {
+    width: 80%;
+}
+.application-list__table {
+    width: 100%;
+    background-color: var(--color-white);
+    border-radius: var(--radius-md);
+    color: var(--color-primary);
+    letter-spacing: var(--letter-spacing-sm);
+}
+.application-list__table th,
+.application-list__table td {
+    border-bottom: 3px solid var(--color-border-list);
+}
+.application-list__table tr:last-child th,
+.application-list__table tr:last-child td {
+    border-bottom: none;
+}
+.application-list__table td:last-child {
+    color: var(--color-black);
+}
+.application-list__table td:nth-child(3),
+.application-list__table td:nth-child(5) {
+    letter-spacing: normal;
+}

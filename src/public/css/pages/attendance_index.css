@@ -2,20 +2,20 @@
 
 .attendance-list {
     background-color: var(--color-bg);
-    padding: var(--spacing-xl);
 }
 .attendance-alert {
     background-color: var(--color-success-bg);
     color: var(--color-success);
     text-align: center;
     font-size: var(--font-xxs);
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
-    padding: var(--spacing-xxs);
+    padding: var(--spacing-xs);
 }
 .attendance-list__inner {
     max-width: 1230px;
     margin: 0 auto;
+    padding: var(--spacing-lg) 0;
 }
 
 .list__heading {
