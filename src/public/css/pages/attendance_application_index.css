@@ -1,4 +1,4 @@
-.application-list {
+body {
     background-color: var(--color-bg);
 }
 .application-list__inner {
@@ -21,16 +21,22 @@
     background-color: var(--color-black);
     margin-right: var(--spacing-sm);
 }
+.application-list__heading-txt {
+    font-size: var(--font-xl);
+}
 
 .application-list__tabs {
     border-bottom: 1px solid var(--color-black);
     padding-bottom: var(--spacing-md);
     display: flex;
-    gap: 6rem;
-    margin: var(--spacing-section);
+    gap: var(--spacing-lg);
+    margin: var(--spacing-section) auto;
+    width: 80%;
 }
 .application-list__tab {
     display: inline-block;
+    text-decoration: none;
+    color: var(--color-black);
     margin-left: var(--spacing-section);
 }
 .application-list__tab--active {
@@ -39,6 +45,7 @@
 
 .application-list__content {
     width: 80%;
+    margin: 0 auto;
 }
 .application-list__table {
     width: 100%;
@@ -50,15 +57,56 @@
 .application-list__table th,
 .application-list__table td {
     border-bottom: 3px solid var(--color-border-list);
+    padding: var(--spacing-xs);
+    text-align: left;
+    font-weight: bold;
 }
+.application-list__table th:first-child,
+.application-list__table td:first-child {
+    text-align: center;
+    padding-left: var(--spacing-lg);
+}
+
 .application-list__table tr:last-child th,
 .application-list__table tr:last-child td {
     border-bottom: none;
 }
+
+.application-list__table th:last-child,
 .application-list__table td:last-child {
+    padding-right: var(--spacing-2xl);
+}
+.application-list__table td:last-child a{
     color: var(--color-black);
+    text-decoration: none;
 }
 .application-list__table td:nth-child(3),
 .application-list__table td:nth-child(5) {
     letter-spacing: normal;
+}
+.application-list__no-data {
+    font-weight: normal;
+}
+
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .application-list__heading {
+        width: 90%;
+    }
+    .application-list__tabs {
+        width: 90%;
+    }
+    .application-list__content {
+        width: 90%;
+    }
+    .application-list__table {
+        letter-spacing: normal;
+    }
+    .application-list__table th:first-child,
+    .application-list__table td:first-child {
+        padding-left: var(--spacing-sm);
+    }
+    .application-list__table th:last-child,
+    .application-list__table td:last-child {
+        padding-right: var(--spacing-lg);
+    }
 }

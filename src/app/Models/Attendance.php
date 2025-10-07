@@ -9,6 +9,9 @@ use Carbon\Carbon;
 class Attendance extends Model
 {
     use HasFactory;
+    protected $casts = [
+        'work_date' => 'datetime',
+    ];
 
     protected $fillable = [
         'user_id', 'work_date', 'clock_in', 'clock_out', 'status',

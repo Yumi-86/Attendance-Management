@@ -1,6 +1,6 @@
 @import '../base/variables.css';
 
-.attendance__content {
+body {
     background-color: var(--color-bg);
 }
 .session__status {

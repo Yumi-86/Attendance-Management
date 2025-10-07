@@ -1,6 +1,6 @@
 @import '../base/variables.css';
 
-.attendance-list {
+body {
     background-color: var(--color-bg);
 }
 .attendance-alert {
