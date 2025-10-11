@@ -42,8 +42,8 @@
                         <td>{{ $date->isoFormat('MM/DD (ddd) ') }}</td>
                         <td>{{ $attendance->clock_in_formatted ?? '' }}</td>
                         <td>{{ $attendance->clock_out_formatted ?? '' }}</td>
-                        <td>{{ $attendance->break_time ?? '' }}</td>
-                        <td>{{ $attendance->total_time ?? '' }}</td>
+                        <td>{{ $attendance->total_break_minutes ?? '' }}</td>
+                        <td>{{ $attendance->total_work_minutes ?? '--:--' }}</td>
                         <td>
                             @if ($attendance)
                             <a href="{{ route('attendance.show', $attendance) }}">詳細</a>

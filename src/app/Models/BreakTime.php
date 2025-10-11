@@ -24,4 +24,10 @@ class BreakTime extends Model
     public function getBreakEndFormattedAttribute() {
         return $this->break_end ? Carbon::parse($this->break_end)->format('H:i') : null;
     }
+
+    public function getDurationMinutesAttribute() {
+        if (!$this->break_start || !$this->break_end) return 0;
+
+        return Carbon::parse($this->break_end)->diffInMinutes(Carbon::parse($this->break_start));
+    }
 }

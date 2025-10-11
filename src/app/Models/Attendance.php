@@ -54,4 +54,37 @@ class Attendance extends Model
     public function getDateAttribute() {
         return $this->work_date ? Carbon::parse($this->work_date)->format('n月j日') : null;
     }
+
+    public function getTotalWorkMinutesAttribute() {
+        if(!$this->clock_in || !$this->clock_out) {
+            return null;
+        }
+
+        $start = Carbon::parse($this->clock_in);
+        $end = Carbon::parse($this->clock_out);
+
+        $workMinutes = $end->diffInMinutes($start);
+
+        $breakMinutes = $this->breakTimes->sum(fn($b) => $b->duration_minutes);
+
+        $netMinutes = max($workMinutes - $breakMinutes,0);
+
+        $hours = floor($netMinutes / 60);
+        $minutes = $netMinutes % 60;
+
+        return sprintf('%d:%02d', $hours, $minutes);
+    }
+
+    public function getTotalBreakMinutesAttribute() {
+        $totalMinutes = $this->breakTimes->sum(fn ($b) => $b->duration_minutes);
+
+        $hours = floor($totalMinutes / 60);
+        $minutes = $totalMinutes % 60;
+
+        return sprintf('%d:%02d', $hours, $minutes);
+    }
+
+    public function scopeDailyAttendanceSearch($query, $work_date) {
+        return $this->whereDate('work_date', $work_date);
+    }
 }

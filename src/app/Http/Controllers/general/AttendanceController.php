@@ -23,42 +23,18 @@ class AttendanceController extends Controller
 
         $period = CarbonPeriod::create($start, $end);
 
-        $attendancesCollection = Attendance::where('user_id', auth()->id())
+        $attendances = Attendance::with('breakTimes')
+            ->where('user_id', auth()->id())
             ->whereBetween('work_date', [$start->toDateString(), $end->toDateString()])
-            ->get();
-
-        $attendances = $attendancesCollection->map(function ($attendance) {
-            $start = Carbon::parse($attendance->clock_in);
-
-            if($attendance->clock_out) {
-                $end = Carbon::parse($attendance->clock_out);
-
-                $workMinutes = $end->diffInMinutes($start);
-
-                $breakMinutes = $attendance->breakTimes->sum(function ($break) {
-                    $breakStart = Carbon::parse($break->break_start);
-                    $breakEnd = Carbon::parse($break->break_end);
-
-                    return $breakEnd->diffInMinutes($breakStart);
-                });
-
-                $actualMinutes = $workMinutes - $breakMinutes;
-
-                $attendance->break_time = sprintf('%d:%02d', floor($breakMinutes / 60), $breakMinutes % 60);
-                $attendance->total_time = sprintf('%d:%02d', floor($actualMinutes / 60), $actualMinutes % 60);
-            } else {
-                $attendance->break_time = '0:00';
-                $attendance->total_time = '--:--';
-            }
-            return $attendance;
-        })->keyBy(function ($item) {
-            return Carbon::parse($item->work_date)->toDateString();
-        });
+            ->get()
+            ->keyBy(fn ($a) => Carbon::parse($a->work_date)->toDateString());
 
         $prevMonth = $currentMonth->copy()->subMonth()->format('Y-m');
-        $nextMonth = $currentMonth->copy()->addMonth()->format('Y-m');
+        $nextMonth = $currentMonth->copy()->subMonth()->format('Y-m');
 
-        return view('general.attendance.index', compact('period', 'attendances', 'currentMonth', 'prevMonth', 'nextMonth'));
+        return view('general.attendance.index', compact(
+            'period', 'attendances', 'currentMonth', 'prevMonth', 'nextMonth'
+        ));
     }
 
     public function create() {

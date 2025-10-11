@@ -22,9 +22,7 @@ use App\Models\Attendance;
 
     Route::post('/login', [AuthenticatedSessionController::class, 'store'])->middleware('web')->name('login');
 
-    Route::get('/admin/login', function () {
-        return view('admin.auth.login');
-    })->middleware('web')->name('admin.login');
+    Route::get('/admin/login', fn() => view('admin.auth.login'))->middleware('web')->name('admin.login');
     Route::post('/admin/login', [AuthenticatedSessionController::class, 'store'])->name('admin.login.store');
 
 

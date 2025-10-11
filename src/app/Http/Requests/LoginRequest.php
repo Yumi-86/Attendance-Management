@@ -50,13 +50,13 @@ class LoginRequest extends FormRequest
 
         if (str_starts_with($this->path(), 'admin/login') && $user && $user->role !== 'admin') {
             throw ValidationException::withMessages([
-                'email' => '管理者アカウントとして認証できません。',
+                'email' => '管理者アカウントとして認証できません',
             ]);
         }
 
         if ($this->routeIs('login') && $user && $user->role !== 'general') {
             throw ValidationException::withMessages([
-                'email' => '一般ユーザーとして認証できません。',
+                'email' => '一般ユーザーとして認証できません',
             ]);
         }
     }

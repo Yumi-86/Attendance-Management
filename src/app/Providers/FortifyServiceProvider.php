@@ -11,6 +11,7 @@ use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Contracts\LoginResponse;
 use App\Actions\Fortify\LoginResponse as CustomLoginResponse;
 use Laravel\Fortify\Contracts\VerifyEmailViewResponse;
+use Illuminate\Support\Facades\Auth;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -36,6 +37,16 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::loginView(function () {
             return view('auth.login');
         });
+        // Fortify::loginView(function () {
+        //     if (Auth::check()) {
+        //         if (Auth::user()->role === 'admin') {
+        //             return redirect()->route('admin.attendances.index')
+        //                 ->with('warning', '管理者としてログイン中です。一般ユーザーでログインするにはログアウトして下さい');
+        //         }
+        //         return redirect()->route('attendance.index');
+        //     }
+        //     return view('auth.login');
+        // });
 
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->email;

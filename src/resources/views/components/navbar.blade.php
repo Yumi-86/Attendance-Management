@@ -8,9 +8,9 @@
             @endif
 
             @if(Auth::check() && Auth::user()->role === 'admin')
-            <li><a href="{{ route('admin.attendance.index') }}" class="navbar__link">勤怠一覧</a></li>
-            <li><a href="{{ route('admin.user.index') }}" class="navbar__link">スタッフ一覧</a></li>
-            <li><a href="{{ route('admin.request.index') }}" class="navbar__link">申請一覧</a></li>
+            <li><a href="{{ route('admin.attendances.index') }}" class="navbar__link">勤怠一覧</a></li>
+            <li><a href="{{ route('admin.users.index') }}" class="navbar__link">スタッフ一覧</a></li>
+            <li><a href="{{ route('admin.requests.index') }}" class="navbar__link">申請一覧</a></li>
             @endif
 
             <li>
