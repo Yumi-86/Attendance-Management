@@ -49,7 +49,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('/attendances', [AdminAttendanceController::class, 'index'])->name('attendances.index');
 
-        Route::get('/attendances/{id}', [AdminAttendanceController::class, 'show'])->name('attendances.show');
+        Route::get('/attendances/{attendance}', [AdminAttendanceController::class, 'show'])->name('attendances.show');
+
+        Route::patch('/attendances/{attendance}', [AdminAttendanceController::class, 'update'])->name('attendances.update');
 
         Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
 
