@@ -4,7 +4,7 @@ body {
     background-color: var(--color-bg);
 }
 
-.attendance-alert {
+.user-attendance__alert {
     background-color: var(--color-success-bg);
     color: var(--color-success);
     text-align: center;
@@ -14,13 +14,13 @@ body {
     padding: var(--spacing-xs);
 }
 
-.attendance-list__inner {
+.user-attendance__inner {
     max-width: 1230px;
     margin: 0 auto;
     padding: var(--spacing-3xl) 0;
 }
 
-.list__heading {
+.user-attendance__heading {
     display: flex;
     align-items: center;
     text-align: left;
@@ -28,7 +28,7 @@ body {
     margin: 0 auto var(--spacing-xl);
 }
 
-.list__heading::before {
+.user-attendance__heading::before {
     content: "";
     display: inline-block;
     width: 8px;
@@ -37,12 +37,12 @@ body {
     margin-right: var(--spacing-sm);
 }
 
-.list__heading-text {
+.user-attendance__heading-text {
     font-size: var(--spacing-lg);
     font-weight: bold;
 }
 
-.list__content-pagenation {
+.user-attendance__pagenation {
     width: 80%;
     margin: var(--spacing-section) auto;
     padding: var(--spacing-md) 0;
@@ -101,53 +101,57 @@ body {
     transform: translate(0, -50%);
 }
 
-.list__table {
+.user-attendance__table-inner {
     width: 80%;
     margin: 0 auto;
     border-radius: var(--radius-md);
     border-collapse: collapse;
     background-color: var(--color-white);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     letter-spacing: var(--letter-spacing-sm);
     font-weight: bold;
     color: var(--color-primary);
 }
 
-.list__table thead {
+.user-attendance__table-inner thead {
     border-bottom: 3px solid var(--color-border-list);
 }
 
-.list__table td {
+.user-attendance__table-inner td {
     border-bottom: 2px solid var(--color-border-list);
 }
 
-.list__table th,
-.list__table td {
+.user-attendance__table-inner th,
+.user-attendance__table-inner td {
     padding: var(--spacing-sm);
     text-align: center;
     font-size: var(--font-xxs);
 }
-.list__table th:first-child {
-    padding-right: var(--spacing-2xl);
-}
-.list__table td:first-child {
-    padding-right: var(--spacing-2xl);
-}
-.list__table tr:last-child td {
-    border-bottom: none;
-}
-.list__table a {
+
+.user-attendance__table-inner a {
     text-decoration: none;
     color: var(--color-black);
 }
-.list__no-data {
-    font-weight: normal;
+.user-attendance__btn {
+    width: 80%;
+    margin: var(--spacing-section) auto;
+    text-align: right;
 }
-
+.user-attendance__btn-csv {
+    padding: var(--spacing-sm) var(--spacing-xl);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-black);
+    color: var(--color-white);
+    font-weight: bold;
+    font-size: var(--font-sm);
+    text-decoration: none;
+}
 @media screen and (min-width: 768px) and (max-width: 850px) {
-    .attendance-list__inner {
+    .user-attendance__inner {
         padding: var(--spacing-md) 0;
     }
-    .list-heading {
+
+    .user-attendance__heading {
         margin: 0 auto var(--spacing-md);
     }
 
@@ -155,19 +159,12 @@ body {
         left: -40%;
     }
 
-    .list__table {
+    .user-attendance__table-inner {
         letter-spacing: normal;
     }
 
-    .list__table th,
-    .list__table td {
+    .user-attendance__table-inner th,
+    .user-attendance__table-inner td {
         padding: var(--spacing-xxs);
-    }
-    .list__table th:first-child {
-        padding-right: var(--spacing-xl);
-    }
-
-    .list__table td:first-child {
-        padding-right: var(--spacing-xl);
     }
 }

@@ -11,6 +11,8 @@
 
     --color-primary: #737373;
 
+    --color-btn-disabled: #696969;
+
     --color-border-list: #e1e1e1;
 
     --color-error: #f00;
@@ -20,6 +22,9 @@
 
     --color-success: var(--color-white);
     --color-success-bg: #b7f8aa;
+
+    --color-warning-bg: #fff3cd;
+    --color-warning-border: #ffeeba;
 
     --font-xxs: 1rem;
     /*16px*/
@@ -95,5 +100,5 @@
 
     --lh-tight: 1.2;
     --lh-base: 1.5;
-    --lh-loose: 1.75;
+    --lh-loose: 1.7;
 }

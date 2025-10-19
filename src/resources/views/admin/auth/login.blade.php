@@ -6,6 +6,13 @@
 
 @section('content')
 
+
+@if (session('warning'))
+<div class="login-warning">
+    {{ session('warning') }}
+</div>
+@endif
+
 <div class="auth__content">
     <div class="auth__heading auth__heading--login">
         <h2>管理者ログイン</h2>

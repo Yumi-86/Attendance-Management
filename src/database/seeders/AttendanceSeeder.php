@@ -26,6 +26,10 @@ class AttendanceSeeder extends Seeder
             for ($i = 0; $i < 30; $i++) {
                 $date = now()->subDays($i);
 
+                if (rand(1, 100) <= 20) {
+                    continue;
+                }
+
                 $clockIn = Carbon::createFromTime(rand(8, 10), rand(0, 59));
                 $clockOut = (clone $clockIn)->addHours(rand(7, 9))->addMinutes(rand(0, 59));
 
@@ -49,9 +53,11 @@ class AttendanceSeeder extends Seeder
 
                     if ($end > $clockOut) continue;
 
-                    if (collect($usedTimes)->contains(fn($t) => $start->between($t['start'], $t['end']))) {
-                        continue;
-                    }
+                    $overlap = collect($usedTimes)->contains(function ($t) use ($start, $end) {
+                        return $start < $t['end'] && $end > $t['start'];
+                    });
+
+                    if($overlap) continue;
 
                     $usedTimes[] = ['start' => $start, 'end' => $end];
 

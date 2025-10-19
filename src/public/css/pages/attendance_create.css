@@ -21,7 +21,7 @@ body {
 .attendance__main {
     max-width: 1230px;
     margin: 0 auto;
-    padding: 10rem 0;
+    padding: var(--spacing-3xl) 0;
     text-align: center;
 }
 

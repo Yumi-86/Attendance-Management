@@ -11,7 +11,7 @@ body {
 .attendance-dtl {
     max-width: 1230px;
     margin: 0 auto;
-    padding: var(--spacing-section) 0;
+    padding: var(--spacing-3xl) 0;
 }
 .attendance-dtl__block,
 .attendance-dtl__form,
@@ -86,9 +86,15 @@ body {
 .attendance-clock__txt,
 .attendance-break__txt,
 .attendance-remarks__txt {
-    font-size: var(--font-xs);
+    font-size: var(--font-xxs);
     padding: var(--spacing-xxs) var(--spacing-md);
     letter-spacing: var(--letter-spacing-sm);
+}
+.attendance-remarks__txt {
+    display: block;
+    line-height: var(--lh-loose);
+    word-break: break-word;
+    white-space: pre-wrap;
 }
 .attendance-clock__input,
 .attendance-break__input,
@@ -141,26 +147,38 @@ input[type="time"]::-moz-focus-inner {
     font-size: var(--font-xs);
     font-weight: bolder;
 }
-.attendance-dtl__btn {
+.attendance-dtl__btn,
+.attendance-dtl__btn-form {
     display: flex;
     flex-direction: row-reverse;
     margin: var(--spacing-2xl) 0;
 }
-.attendance-btn--submit {
+.attendance-btn {
     width: 130px;
-    background-color: var(--color-black);
-    color: var(--color-white);
     font-size: var(--font-md);
     font-weight: bold;
     letter-spacing: var(--letter-spacing-sm);
     border-radius: var(--radius-sm);
     text-align: center;
     padding: var(--spacing-xxs) 0;
+    border: none;
+}
+.attendance-btn--submit {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+.attendance-btn--approved {
+    background-color: var(--color-btn-disabled);
+    color: var(--color-white);
 }
 
 @media screen and (min-width: 768px) and (max-width: 850px) {
     .attendance-dtl {
         max-width: 850px;
+        padding: var(--spacing-md) 0;
+    }
+    .attendance-dtl__heading {
+        margin-bottom: var(--spacing-md);
     }
     .attendance-dtl__block,
     .attendance-dtl__form,

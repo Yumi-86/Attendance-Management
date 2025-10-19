@@ -20,13 +20,13 @@ use App\Models\Attendance;
 |
 */
 
-    Route::post('/login', [AuthenticatedSessionController::class, 'store'])->middleware('web')->name('login');
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])->middleware('web')->name('login');
 
-    Route::get('/admin/login', fn() => view('admin.auth.login'))->middleware('web')->name('admin.login');
-    Route::post('/admin/login', [AuthenticatedSessionController::class, 'store'])->name('admin.login.store');
+Route::get('/admin/login', fn() => view('admin.auth.login'))->middleware('web')->name('admin.login');
+Route::post('/admin/login', [AuthenticatedSessionController::class, 'store'])->name('admin.login.store');
 
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'general.access'])->group(function () {
     Route::get('/attendance', [AttendanceController::class, 'create'])->name('attendance.create');
 
     Route::post('/attendance/clockIn', [AttendanceController::class, 'clockIn'])->name('attendance.clockIn');
@@ -45,7 +45,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 Route::prefix('admin')->name('admin.')->group(function () {
 
-    Route::middleware(['auth', 'admin'])->group(function () {
+    Route::middleware(['auth', 'admin', 'admin.access'])->group(function () {
 
         Route::get('/attendances', [AdminAttendanceController::class, 'index'])->name('attendances.index');
 
@@ -55,10 +55,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
 
-        Route::get('/users/{user}/attendances', [AdminAttendanceController::class, 'userIndex'])->name('users.attendances');
+        Route::get('/users/{user}/attendances', [AdminUserController::class, 'userIndex'])->name('users.attendances');
+
+        Route::get('/users/{user}/attendances/csv', [AdminUserController::class, 'exportCsv'])->name('users.attendances.csv');
 
         Route::get('/requests', [AdminApplicationController::class, 'index'])->name('requests.index');
 
-        Route::get('/requests/{id}', [AdminApplicationController::class, 'show'])->name('requests.show');
+        Route::get('/requests/{application}', [AdminApplicationController::class, 'show'])->name('requests.show');
+
+        Route::post('/request/{application}', [AdminApplicationController::class, 'approve'])->name('requests.approve');
     });
 });

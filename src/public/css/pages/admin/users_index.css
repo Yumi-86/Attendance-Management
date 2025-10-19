@@ -1,0 +1,91 @@
+.users-page {
+    background-color: var(--color-bg);
+}
+.users-page__inner {
+    max-width: 1230px;
+    margin: 0 auto;
+    padding: var(--spacing-3xl) 0;
+}
+.users-page__heading {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    width: 80%;
+    margin: 0 auto var(--spacing-xl);
+}
+.users-page__heading::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 40px;
+    background-color: var(--color-black);
+    margin-right: var(--spacing-sm);
+}
+.users-page__heading-txt {
+    font-size: var(--font-sb-ttl);
+    font-weight: bold;
+}
+.users-page__table {
+    width: 80%;
+    margin: 0 auto;
+    border-radius: var(--radius-md);
+    border: none;
+    letter-spacing: var(--letter-spacing-sm);
+    font-weight: bold;
+    background-color: var(--color-white);
+}
+.users-page__table thead {
+    border-bottom: 3px solid var(--color-border-list);
+}
+.users-page__table td {
+    border-bottom: 2px solid var(--color-border-list);
+}
+.users-page__table  tr:last-child td{
+    border: none;
+}
+.users-page__table th,
+.users-page__table td {
+    padding: var(--spacing-sm);
+    color: var(--color-primary);
+    text-align: center;
+    font-size: var(--font-xxs);
+}
+.users-page__table a {
+    text-decoration: none;
+    color: var(--color-black);
+}
+.users-page__table th:first-child,
+.users-page__table td:first-child {
+    padding-left: var(--spacing-3xl);
+    padding-right: var(--spacing-md);
+}
+.users-page__table th:last-child,
+.users-page__table td:last-child {
+    padding-right: var(--spacing-3xl);
+    padding-left: var(--spacing-md);
+}
+
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .users-page__inner {
+        padding: var(--spacing-md) 0;
+    }
+    .users-page__heading {
+        margin: 0 auto var(--spacing-md);
+        width: 90%;
+    }
+    .users-page__table {
+        width: 90%;
+        letter-spacing: normal;
+    }
+    .users-page__table th:first-child,
+    .users-page__table td:first-child {
+        padding-left: var(--spacing-xl);
+        padding-right: var(--spacing-sm);
+    }
+
+    .users-page__table th:last-child,
+    .users-page__table td:last-child {
+        padding-right: var(--spacing-xl);
+        padding-left: var(--spacing-sm);
+    }
+}

@@ -15,7 +15,7 @@ body {
 .attendance-list__inner {
     max-width: 1230px;
     margin: 0 auto;
-    padding: var(--spacing-lg) 0;
+    padding: var(--spacing-3xl) 0;
 }
 
 .list__heading {
@@ -23,7 +23,7 @@ body {
     align-items: center;
     text-align: left;
     width: 80%;
-    margin: 0 auto;
+    margin: 0 auto var(--spacing-xl);
 }
 .list__heading::before {
     content: "";
@@ -37,7 +37,6 @@ body {
 .list__heading-text {
     font-size: var(--spacing-lg);
     font-weight: bold;
-    margin-bottom: var(--spacing-md);
 }
 
 .list__content-pagenation {
@@ -124,6 +123,12 @@ body {
 }
 
 @media screen and (min-width: 768px) and (max-width: 850px) {
+    .attendance-list__inner {
+        padding: var(--spacing-md) 0;
+    }
+    .list__heading {
+        margin: 0 auto var(--spacing-md);
+    }
     .pagenation__cur::before {
             left: -40%;
     }

@@ -10,6 +10,7 @@ use App\Models\BreakTime;
 use App\Models\Application;
 use App\Http\Requests\AttendanceApplicationRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class AttendanceController extends Controller
 {
@@ -44,7 +45,8 @@ class AttendanceController extends Controller
             ]);
 
             $application = $attendance->applications()->create([
-                'user_id' => $attendance->user_id,
+                'user_id' => Auth::id(),
+                'approved_by' => Auth::id(),
                 'applied_clock_in' => $validated['applied_clock_in'],
                 'applied_clock_out' => $validated['applied_clock_out'],
                 'applied_remarks' => $validated['applied_remarks'],

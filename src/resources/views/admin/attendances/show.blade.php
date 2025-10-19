@@ -59,7 +59,7 @@
                 <tr>
                     <th>備考</th>
                     <td>
-                        <div class="attendance-remarks" disabled>{{ $application->applied_remarks }}</div>
+                        <div class="attendance-remarks__txt" disabled>{{ $application->applied_remarks }}</div>
                     </td>
                 </tr>
             </table>

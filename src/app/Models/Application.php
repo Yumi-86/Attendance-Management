@@ -11,7 +11,7 @@ class Application extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'attendance_id', 'applied_clock_in', 'applied_clock_out','applied_remarks', 'status',
+        'user_id', 'approved_by','attendance_id', 'applied_clock_in', 'applied_clock_out','applied_remarks', 'status',
     ];
 
     public function user() {
