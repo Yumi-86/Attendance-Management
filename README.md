@@ -51,6 +51,15 @@ php artisan db:seed
 ```
 #### ６. テスト環境の構築・実行
 ##### 本プロジェクトには Laravel の Feature / Unit テストが用意されています。
+- 一般テストユーザ情報<br>
+下記の情報でテスト用一般ユーザとしてでログインができます。<br>
+email: test@example.com <br>
+password: password<br>
+
+- 管理者情報<br>
+下記の情報で管理者としてログインできます<br>
+email: Admin.1@example.com<br>
+password: password123<br>
 
 - テスト用DBの作成<br>
 ⇒mysqlコンテナに管理者としてログインしてテスト用DBの作成

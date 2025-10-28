@@ -15,33 +15,21 @@ class BreakTimeFactory extends Factory
      */
     public function definition()
     {
+        $start = Carbon::parse('12:00:00');
+        $end = (clone $start)->addMinutes(30);
+
         return [
             'attendance_id' => Attendance::factory(),
-            'break_start' => fn (array $attribute) => $this->generateBreakTime($attribute)['start'],
-            'break_end' => fn (array $attribute) => $this->generateBreakTime($attribute)['end'],
+            'break_start' => $start->format('H:i:s'),
+            'break_end' => $end->format('H:i:s'),
         ];
     }
 
-    private function generateBreakTime($attribute)
+    public function ongoing()
     {
-        $clockIn = isset($attribute['attendance'])
-            ? Carbon::parse($attribute['attendance']->clock_in)
-            : Carbon::createFromTime(9, 0, 0);
-
-        $clockOut = isset($attribute['attendance'])
-            ? Carbon::parse($attribute['attendance']->clock_in)
-            : Carbon::createFromTime(18, 0, 0);
-
-        $breakStart = $clockIn->copy()->addHours(rand(2, 5));
-        $breakEnd = (clone $breakStart)->addMinutes(rand(30, 60));
-
-        if ($breakEnd->gt($clockOut)) {
-            $breakEnd = $clockOut->copy()->subMinutes(15);
-        }
-
-        return [
-            'start' => $breakStart->format('H:i:s'),
-            'end' => $breakEnd->format('H:i:s'),
-        ];
+        return $this->state(fn() => [
+            'break_start' => '12:00:00',
+            'break_end' => null,
+        ]);
     }
 }
