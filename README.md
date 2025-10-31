@@ -90,14 +90,6 @@ php artisan key:generate --env=testing
 ```bash
 php artisan migrate --env=testing
 ```
-- phpunit.xmlの編集<br>
-・DB_CONNECTIONとDB_DATABASEを変更<br>
-
-```
-<server name="DB_CONNECTION" value="mysql_test"/>
-<server name="DB_DATABASE" value="laravel_test_db"/>
-```
-
 - テストの実行
 ```bash
 php artisan test
@@ -121,8 +113,7 @@ Web サーバー：Nginx 1.21.1<br>
 
 - phpMyAdmin : http://localhost:8080/
 - mailhog Web_UI : http://localhost:8025/
-- 商品一覧画面（トップページ）: http://localhost/
+- 勤怠登録画面（一般トップページ）: http://localhost/attendance
+- 勤怠一覧画面（管理者トップ）： http://localhost/admin/attendances
 - 会員登録画面 : http://localhost/register
 - ログイン画面 : http://localhost/login
-- マイページ（プロフィール） : http://localhost/profile
-- 商品出品画面 : http://localhost/items/sell

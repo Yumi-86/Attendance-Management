@@ -21,6 +21,10 @@ class FortifyServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(LoginResponse::class, CustomLoginResponse::class);
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\RegisterResponse::class,
+            \App\Actions\Fortify\RegisterResponse::class
+        );
     }
 
     /**
@@ -37,16 +41,6 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::loginView(function () {
             return view('auth.login');
         });
-        // Fortify::loginView(function () {
-        //     if (Auth::check()) {
-        //         if (Auth::user()->role === 'admin') {
-        //             return redirect()->route('admin.attendances.index')
-        //                 ->with('warning', '管理者としてログイン中です。一般ユーザーでログインするにはログアウトして下さい');
-        //         }
-        //         return redirect()->route('attendance.index');
-        //     }
-        //     return view('auth.login');
-        // });
 
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->email;

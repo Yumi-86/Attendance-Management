@@ -39,7 +39,7 @@
                         $attendance = $attendances->get($key);
                         @endphp
                     <tr>
-                        <td>{{ $date->isoFormat('MM/DD (ddd) ') }}</td>
+                        <td>{{ $date->isoFormat('MM/DD (ddd)') }}</td>
                         <td>{{ $attendance->clock_in_formatted ?? '' }}</td>
                         <td>{{ $attendance->clock_out_formatted ?? '' }}</td>
                         <td>{{ $attendance->total_break_minutes ?? '' }}</td>

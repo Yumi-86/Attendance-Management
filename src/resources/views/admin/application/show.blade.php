@@ -22,7 +22,11 @@
                 <tr>
                     <th>名前</th>
                     <td>
+                        @if ($application->attendance->user_id !== $application->user_id)
+                        <div class="attendance-name">{{ $application->attendance->user->name }}（管理者修正）</div>
+                        @else
                         <div class="attendance-name">{{ $user->name }}</div>
+                        @endif
                     </td>
                 </tr>
                 <tr>
@@ -74,7 +78,11 @@
                 <tr>
                     <th>名前</th>
                     <td>
+                        @if ($application->attendance->user_id !== $application->user_id)
+                        <div class="attendance-name">{{ $application->attendance->user->name }}（管理者修正）</div>
+                        @else
                         <div class="attendance-name">{{ $user->name }}</div>
+                        @endif
                     </td>
                 </tr>
                 <tr>

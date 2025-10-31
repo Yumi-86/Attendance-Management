@@ -16,12 +16,12 @@ class CreateApplicationsTable extends Migration
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('approved_by')->nullable()->constrained('users')->cascadeOnDelete();
+            $table->foreignId('approved_by')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('attendance_id')->constrained()->cascadeOnDelete();
             $table->time('applied_clock_in');
             $table->time('applied_clock_out');
             $table->string('applied_remarks');
-            $table->string('status');
+            $table->string('status', 20)->default('pending');
             $table->timestamps();
         });
     }

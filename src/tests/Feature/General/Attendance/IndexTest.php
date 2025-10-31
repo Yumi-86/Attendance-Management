@@ -84,13 +84,13 @@ class IndexTest extends TestCase
         $prevMonth = (clone $currentMonth)->subMonth()->format('Y-m');
 
         $response = $this->get(route('attendance.index', ['month' => $prevMonth]));
-        $response->assertSeeText('09/18 (土)');
+        $response->assertSeeText('09/18 (木)');
         $response->assertSeeText('09:00');
         $response->assertSeeText('18:00');
-        $response->assertSeeText('09/19 (日)');
+        $response->assertSeeText('09/19 (金)');
         $response->assertSeeText('09:00');
         $response->assertSeeText('18:00');
-        $response->assertSeeText('09/20 (月)');
+        $response->assertSeeText('09/20 (土)');
         $response->assertSeeText('09:00');
         $response->assertSeeText('18:00');
     }
@@ -113,13 +113,13 @@ class IndexTest extends TestCase
         $nextMonth = (clone $currentMonth)->addMonth()->format('Y-m');
 
         $response = $this->get(route('attendance.index', ['month' => $nextMonth]));
-        $response->assertSeeText('11/18 (土)');
+        $response->assertSeeText('11/18 (火)');
         $response->assertSeeText('09:00');
         $response->assertSeeText('18:00');
-        $response->assertSeeText('11/19 (日)');
+        $response->assertSeeText('11/19 (水)');
         $response->assertSeeText('09:00');
         $response->assertSeeText('18:00');
-        $response->assertSeeText('11/20 (月)');
+        $response->assertSeeText('11/20 (木)');
         $response->assertSeeText('09:00');
         $response->assertSeeText('18:00');
     }
@@ -136,8 +136,8 @@ class IndexTest extends TestCase
         $response = $this->get(route('attendance.show', $attendance));
         $response->assertSeeText('勤怠詳細');
         $response->assertSeeText('2025年');
-        $response->assertSeeText('10月20月');
-        $response->assertSeeText('09:00');
-        $response->assertSeeText('18:00');
+        $response->assertSeeText('10月20日');
+        $response->assertSee('value="09:00"', false);
+        $response->assertSee('value="18:00"', false);
     }
 }

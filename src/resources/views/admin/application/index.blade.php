@@ -55,7 +55,11 @@
                 @forelse($approvedApplications as $application)
                 <tr>
                     <td>{{ config('constants.application.status.' . $application->status ) }}</td>
+                    @if($application->user_id !== $application->attendance->user_id)
+                    <td>{{ $application->attendance->user->name }}（管理者修正）</td>
+                    @else
                     <td>{{ $application->user->name }}</td>
+                    @endif
                     <td>{{ $application->attendance->work_date->format('Y/m/d') }}</td>
                     <td>{{ $application->applied_remarks }}</td>
                     <td>{{ ($application->created_at)->format('Y/m/d') }}</td>

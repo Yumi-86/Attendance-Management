@@ -17,10 +17,12 @@ class ApplicationController extends Controller
 
         $pendingApplications = Application::with(['user', 'attendance'])
             ->where('status', 'pending')
+            ->orderby('created_at', 'asc')
             ->get();
 
         $approvedApplications = Application::with([ 'user','attendance'])
             ->where('status', 'approved')
+            ->orderby('updated_at', 'desc')
             ->get();
 
         return view('admin.application.index', compact(
