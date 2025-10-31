@@ -69,6 +69,7 @@
             </table>
             <form method="post" action="{{ route('admin.requests.approve', $application) }}" class="attendance-dtl__btn-form">
                 @csrf
+                @method('patch')
                 <button class="attendance-btn attendance-btn--submit" type="submit">承認</button>
             </form>
         </div>

@@ -63,6 +63,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('/requests/{application}', [AdminApplicationController::class, 'show'])->name('requests.show');
 
-        Route::post('/request/{application}', [AdminApplicationController::class, 'approve'])->name('requests.approve');
+        Route::patch('/request/{application}', [AdminApplicationController::class, 'approve'])->name('requests.approve');
     });
 });
