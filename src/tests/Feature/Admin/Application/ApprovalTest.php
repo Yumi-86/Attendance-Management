@@ -5,7 +5,6 @@ namespace Tests\Feature\Admin\Application;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\User;
-use App\Models\Attendance;
 use App\Models\Application;
 use Illuminate\Support\Carbon;
 

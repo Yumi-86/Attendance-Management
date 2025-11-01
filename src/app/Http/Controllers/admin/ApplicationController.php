@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Application;
 use App\Models\Attendance;
-use App\Models\BreakTime;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 

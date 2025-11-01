@@ -6,7 +6,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Attendance;
-use App\Models\BreakTime;
 use Illuminate\Support\Carbon;
 
 class BreakTest extends TestCase
