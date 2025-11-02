@@ -35,15 +35,22 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($attendances as $attendance)
+                @forelse ($users as $user)
+                @php
+                $attendance = $user->attendances->first();
+                @endphp
                 <tr>
-                    <td>{{ $attendance->user->name ?? '' }}</td>
-                    <td>{{ $attendance->clock_in_formatted ?? '' }}</td>
-                    <td>{{ $attendance->clock_out_formatted ?? '' }}</td>
-                    <td>{{ $attendance->total_break_minutes ?? '' }}</td>
-                    <td>{{ $attendance->total_work_minutes ?? '--:--' }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $attendance?->clock_in_formatted ?? '' }}</td>
+                    <td>{{ $attendance?->clock_out_formatted ?? '' }}</td>
+                    <td>{{ $attendance?->total_break_minutes ?? '' }}</td>
+                    <td>{{ $attendance?->total_work_minutes ?? '' }}</td>
                     <td>
+                        @if ($attendance)
                         <a href="{{ route('admin.attendances.show', $attendance) }}">詳細</a>
+                        @else
+                        -
+                        @endif
                     </td>
                 </tr>
                 @empty

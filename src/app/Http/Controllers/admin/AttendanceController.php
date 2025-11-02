@@ -8,6 +8,7 @@ use App\Models\Attendance;
 use Carbon\Carbon;
 use App\Models\BreakTime;
 use App\Models\Application;
+use App\Models\User;
 use App\Http\Requests\AttendanceApplicationRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -17,11 +18,11 @@ class AttendanceController extends Controller
     public function index(Request $request) {
         $work_date = Carbon::parse($request->get('date', now()->toDateString()));
 
-        $attendances = Attendance::with('user')
-            ->dailyAttendanceSearch($work_date)
-            ->get();
+        $users = User::with(['attendances' => function ($query) use ($work_date) {
+            $query->whereDate('work_date', $work_date);
+        }])->orderBy('id')->get();
 
-        return view('admin.attendances.index', compact('work_date', 'attendances'));
+        return view('admin.attendances.index', compact('work_date', 'users'));
     }
 
     public function show(Attendance $attendance) {
