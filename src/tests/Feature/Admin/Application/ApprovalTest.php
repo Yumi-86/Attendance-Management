@@ -88,7 +88,7 @@ class ApprovalTest extends TestCase
             'applied_clock_out' => '18:30:00',
         ]);
 
-        $response = $this->post(route('admin.requests.approve', $application));
+        $response = $this->patch(route('admin.requests.approve', $application));
         $response->assertRedirect(route('admin.requests.show', $application));
         $this->assertDatabaseHas('applications', [
             'id' => $application->id,

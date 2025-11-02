@@ -87,6 +87,6 @@ class RegistrationTest extends TestCase
             'email' => 'test@example.com',
         ]);
 
-        $response->assertRedirect(route('attendance.create'));
+        $response->assertRedirect('email/verify');
     }
 }
