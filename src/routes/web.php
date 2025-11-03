@@ -47,22 +47,23 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::middleware(['auth', 'admin', 'admin.access'])->group(function () {
 
-        Route::get('/attendances', [AdminAttendanceController::class, 'index'])->name('attendances.index');
+        Route::get('/attendance/list', [AdminAttendanceController::class, 'index'])->name('attendances.index');
 
-        Route::get('/attendances/{attendance}', [AdminAttendanceController::class, 'show'])->name('attendances.show');
+        Route::get('/attendance/{attendance}', [AdminAttendanceController::class, 'show'])->name('attendances.show');
 
-        Route::patch('/attendances/{attendance}', [AdminAttendanceController::class, 'update'])->name('attendances.update');
+        Route::patch('/attendance/{attendance}', [AdminAttendanceController::class, 'update'])->name('attendances.update');
 
-        Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
+        Route::get('/staff/list', [AdminUserController::class, 'index'])->name('users.index');
 
-        Route::get('/users/{user}/attendances', [AdminUserController::class, 'userIndex'])->name('users.attendances');
+        Route::get('/attendance/staff/{user}', [AdminUserController::class, 'userIndex'])->name('users.attendances');
 
-        Route::get('/users/{user}/attendances/csv', [AdminUserController::class, 'exportCsv'])->name('users.attendances.csv');
+        Route::get('/attendance/staff/{user}/csv', [AdminUserController::class, 'exportCsv'])->name('users.attendances.csv');
 
-        Route::get('/requests', [AdminApplicationController::class, 'index'])->name('requests.index');
+        Route::get('/stamp_correction_request/list', [AdminApplicationController::class, 'index'])
+            ->name('requests.index');
 
-        Route::get('/requests/{application}', [AdminApplicationController::class, 'show'])->name('requests.show');
+        Route::get('/stamp_correction_request/approve/{application}', [AdminApplicationController::class, 'show'])->name('requests.show');
 
-        Route::patch('/request/{application}', [AdminApplicationController::class, 'approve'])->name('requests.approve');
+        Route::patch('/stamp_correction_request/approve/{application}', [AdminApplicationController::class, 'approve'])->name('requests.approve');
     });
 });
