@@ -18,9 +18,12 @@ class AttendanceController extends Controller
     public function index(Request $request) {
         $work_date = Carbon::parse($request->get('date', now()->toDateString()));
 
-        $users = User::with(['attendances' => function ($query) use ($work_date) {
-            $query->whereDate('work_date', $work_date);
-        }])->orderBy('id')->get();
+        $users = User::where('role', '!=', 'admin')
+            ->with(['attendances' => function ($query) use ($work_date) {
+                $query->whereDate('work_date', $work_date);
+            }])
+            ->orderBy('id')
+            ->get();
 
         return view('admin.attendances.index', compact('work_date', 'users'));
     }
