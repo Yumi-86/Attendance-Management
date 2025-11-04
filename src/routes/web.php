@@ -3,9 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\general\AttendanceController;
 use App\Http\Controllers\general\AttendanceApplicationController;
-use App\Http\Controllers\Admin\AttendanceController as AdminAttendanceController;
-use App\Http\Controllers\Admin\UserController as AdminUserController;
-use App\Http\Controllers\Admin\ApplicationController as AdminApplicationController;
+use App\Http\Controllers\admin\AttendanceController as AdminAttendanceController;
+use App\Http\Controllers\admin\UserController as AdminUserController;
+use App\Http\Controllers\admin\ApplicationController as AdminApplicationController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Models\Attendance;
 

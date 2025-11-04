@@ -21,6 +21,16 @@ composer install
 ```
 
 #### 3. .env.example をコピーし.env ファイルを作成、環境変数の変更。
+\*DBの設定について以下を参考にしてください
+
+```
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=laravel_pass
+```
 
 \*メールの設定について以下を参考にしてください
 
@@ -31,8 +41,8 @@ MAIL_PORT=1025
 MAIL_USERNAME=null
 MAIL_PASSWORD=null
 MAIL_ENCRYPTION=null
-MAIL_FROM_ADDRESS="test@example.com"
-MAIL_FROM_NAME="CoachtechAttendanceManagement"
+MAIL_FROM_ADDRESS=test@example.com
+MAIL_FROM_NAME=CoachtechAttendanceManagement
 ```
 
 #### 4. アプリケーションキーの設定
@@ -73,14 +83,13 @@ CREATE DATABASE laravel_test_db;
 cp .env .env.testing
 ```
 - .env.testingファイルの環境変数の変更<br>
-<設定項目><br>
-APP_ENV<br>
-APP_KEY<br>
-DB_DATABASE<br>
-DB_USERNAME<br>
-DB_PASSWORD<br>
-
-- config/database.phpで接続設定
+<設定項目>
+APP_ENV=testing<br>
+APP_KEY=<br>
+DB_CONNECTION=mysql_test<br>
+DB_DATABASE=laravel_test_db<br>
+DB_USERNAME=root<br>
+DB_PASSWORD=root<br>
 
 - テスト用アプリケーションキーの作成
 ```bash
@@ -93,6 +102,13 @@ php artisan migrate --env=testing
 - テストの実行
 ```bash
 php artisan test
+```
+
+####　権限のエラーについて
+"The stream or file could not be opened"エラーが発生した場合<br>
+srcディレクトリにあるstorageディレクトリ以下の権限を変更<br>
+```
+chmod -R 777 storage
 ```
 
 ## 使用技術
@@ -114,6 +130,8 @@ Web サーバー：Nginx 1.21.1<br>
 - phpMyAdmin : http://localhost:8080/
 - mailhog Web_UI : http://localhost:8025/
 - 勤怠登録画面（一般トップページ）: http://localhost/attendance
-- 勤怠一覧画面（管理者トップ）： http://localhost/admin/attendances
+- 勤怠一覧画面（管理者トップ）： http://localhost/admin/attendances/list
 - 会員登録画面 : http://localhost/register
-- ログイン画面 : http://localhost/login
+- ログイン画面(一般) : http://localhost/login
+- ログイン画面(管理者用) : http://localhost/admin/login
+
