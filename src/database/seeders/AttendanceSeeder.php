@@ -26,6 +26,10 @@ class AttendanceSeeder extends Seeder
             for ($i = 0; $i < 30; $i++) {
                 $date = now()->subDays($i);
 
+                if ($user->email === 'test@example.com' && $date->isToday()) {
+                    continue;
+                }
+
                 if (rand(1, 100) <= 20) {
                     continue;
                 }
