@@ -76,8 +76,6 @@ password: password123<br>
 ```
 CREATE DATABASE laravel_test_db;
 ```
-- config/database.phpの変更<br>
-・ 作成したデータベースに合わせた設定項目を記述
 - テスト用.envファイル作成
 ```bash
 cp .env .env.testing
