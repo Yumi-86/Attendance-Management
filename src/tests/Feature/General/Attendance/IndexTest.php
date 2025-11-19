@@ -124,6 +124,16 @@ class IndexTest extends TestCase
         $response->assertSeeText('18:00');
     }
 
+    public function test_link_of_next_month_is_showed_correctly()
+    {
+        $response = $this->get(route('attendance.index'));
+
+        $currentMonth = Carbon::parse(now()->format('Y-m'));
+        $expectedNextMonth = (clone $currentMonth)->addMonth()->format('Y-m');
+
+        $response->assertSee("?month={$expectedNextMonth}");
+    }
+
     public function test_clicking_detail_button_when_transitioning_to_attendance_detail()
     {
         $attendance = Attendance::factory()->clockedOut()->create([

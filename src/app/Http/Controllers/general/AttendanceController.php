@@ -30,7 +30,7 @@ class AttendanceController extends Controller
             ->keyBy(fn ($a) => Carbon::parse($a->work_date)->toDateString());
 
         $prevMonth = $currentMonth->copy()->subMonth()->format('Y-m');
-        $nextMonth = $currentMonth->copy()->subMonth()->format('Y-m');
+        $nextMonth = $currentMonth->copy()->addMonth()->format('Y-m');
 
         return view('general.attendance.index', compact(
             'period', 'attendances', 'currentMonth', 'prevMonth', 'nextMonth'
